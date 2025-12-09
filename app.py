@@ -18,7 +18,7 @@ def get_leads():
     """Fetch data from Google Sheets"""
     conn = get_db()
     # Read the data, treating it as a DataFrame
-    df = conn.read()
+    df = conn.read(ttl=0)  # <--- THIS IS THE CHANGE
     return df
 
 def add_lead(name, company, email, phone, status, notes):
@@ -98,4 +98,5 @@ def main():
             st.error("Could not connect to Google Sheet. Check Secrets.")
 
 if __name__ == '__main__':
+
     main()
